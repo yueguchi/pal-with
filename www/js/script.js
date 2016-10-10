@@ -1,27 +1,14 @@
 $(function() {
     $(".loading").hide();
     var pal = {
-        words: [
-            "こんにちは",
-            "こんばんは",
-            "おはよう",
-            "お腹すいた"
-        ],
         const: {
-            nadenadeTime: 100,
+            nadenadeTime: 100, //0.1秒
+            smileTime: 1000, // 1秒
+            haraheriTime: 600000, // 10分
+            natsukiTime: 600000, // 10分
+            palImageChangeTime: 1000, // 1秒
         },
     };
-    // 設定
-    $(".setting-btn").on("click", function(event) {
-        $(this).hasClass("fa-spin") ? $(this).removeClass("fa-spin") : $(this).addClass("fa-spin");
-    });
-    // セリフ
-    $(".arrow_box").empty();
-    $(".arrow_box").append(pal.words[Math.floor(Math.random() * 4)]);
-    // setInterval(function() {
-    //         $(".arrow_box").empty();
-    //         $(".arrow_box").append(pal.words[Math.floor( Math.random() * 4)]);
-    // }, 5000);
     // コミュニケーション機能
     $(".communication.chat").hide();
     $(".communication.meal").hide();
@@ -97,7 +84,7 @@ $(function() {
             $(".status-smile").show();
             setTimeout(function() {
                 $(".status-smile").hide();
-            }, 1000);
+            }, pal.const.smileTime);
         }
     });
     // なつきは一定時間経過すると減り続ける
@@ -108,7 +95,7 @@ $(function() {
             firstHearted.removeClass("fa-heart");
             firstHearted.addClass("fa-heart-o");
         }
-    }, 600000); // 10分
+    }, pal.const.haraheriTime);
     // お腹は一定時間放置すると、減り続ける
     setInterval(function() {
         var index = $(".header-menu").find("li > i.fa-circle").length - 1;
@@ -117,7 +104,7 @@ $(function() {
             firstManpukued.removeClass("fa-circle");
             firstManpukued.addClass("fa-circle-o");
         }
-    }, 600000); // 10分
+    }, pal.const.natsukiTime);
     $(".image-pal").on("touchend", function(e) {
         $(".nadenade").hide();
     });
@@ -192,7 +179,8 @@ $(function() {
     /**
      * パルの状態を見て、画像を差し替える
      */
-    setInterval(function() {
+    var palImageInterval = setInterval(function() {
+        $("body").show();
         // お腹もなつき度も低い時(絶望的)
         if ($(".header-menu").find("li > i.fa-circle").length <= 1 && $(".header-menu").find("li > i.fa-heart").length <= 1) {
             $(".image-pal").attr("src", "images/shunn.png");
@@ -215,6 +203,5 @@ $(function() {
         }
         // デフォルト
         $(".image-pal").attr("src", "images/pal.png");
-        
-    }, 1000);
+    }, pal.const.palImageChangeTime);
 });
