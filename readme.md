@@ -10,6 +10,13 @@
 Cordova x Monacaで作成したハイブリッドアプリであり、また、初学者のプログラミング学習を意識して、
 できるだけシンプルな構成でプログラムが組まれています。
 
+## 環境構築
+
+```
+cordova platform add browser
+cordova platform add android
+```
+
 ## local動作確認
 
 1. git clone
