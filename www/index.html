@@ -16,16 +16,16 @@
             <ul class="header-menu">
                 <li>なつき</li>
                 <li><i class="fa fa-heart" aria-hidden="true"></i></li>
-                <li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
-                <li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
+                <li><i class="fa fa-heart" aria-hidden="true"></i></li>
+                <li><i class="fa fa-heart" aria-hidden="true"></i></li>
                 <li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
                 <li><i class="fa fa-heart-o" aria-hidden="true"></i></li>
             </ul>
             <ul class="header-menu">
                 <li>おなか</li>
                 <li><i class="fa fa-circle" aria-hidden="true"></i></li>
-                <li><i class="fa fa-circle-o" aria-hidden="true"></i></li>
-                <li><i class="fa fa-circle-o" aria-hidden="true"></i></li>
+                <li><i class="fa fa-circle" aria-hidden="true"></i></li>
+                <li><i class="fa fa-circle" aria-hidden="true"></i></li>
                 <li><i class="fa fa-circle-o" aria-hidden="true"></i></li>
                 <li><i class="fa fa-circle-o" aria-hidden="true"></i></li>
             </ul>
@@ -40,7 +40,10 @@
                 <i class="nadenade fa fa-hand-paper-o fa-2x" aria-hidden="true"></i>
                 <i class="status-smile md-48 material-icons">tag_faces</i>
             </div>
-            <img class="image-pal" src="images/pal.png">
+            <div class="pal-img-div">
+                <img class="image-pal" src="images/pal.png">
+                <img class="kisekae" src="" />
+            <div>
         </div>
         <div class="loading">
             <i class="fa fa-refresh fa-spin fa-3x fa-fw"></i>
@@ -70,16 +73,34 @@
                 </li>
             </ul>
         </section>
-        <section class="communication play">
-            <ul class="play-list">
-                <li>ホネ集め</li>
-                <li>歯ﾌﾞﾗｼｶﾐｶﾐ</li>
+        <section class="communication changeCloth">
+            <ul class="cloth-list">
+                <li data-value="hat">
+                    <img class="cloth" src="images/hat.png" alt="ハット" />
+                    <br>
+                    <small>ハット</small>
+                </li>
+                <li data-value="cap">
+                    <img class="cloth" src="images/cap.png" alt="キャップ" />
+                    <br>
+                    <small>キャップ</small>
+                </li>
+                <li data-value="santa">
+                    <img class="cloth" src="images/santa.png" alt="サンタ" />
+                    <br>
+                    <small>サンタ</small>
+                </li>
+                <li data-value="hazusu">
+                    <img class="cloth-purge" src="images/hazusu.png" alt="はずす" />
+                    <br>
+                    <small>はずす</small>
+                </li>
             </ul>
         </section>
         <ul>
             <li class="footer-menu" data-action="chat">話す</li>
             <li class="footer-menu" data-action="meal">食事</li>
-            <!--<li class="footer-menu" data-action="play">遊ぶ</li>-->
+            <li class="footer-menu" data-action="changeCloth">着替え</li>
         </ul>
     </footer>
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>

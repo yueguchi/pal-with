@@ -12,31 +12,31 @@ $(function() {
     // コミュニケーション機能
     $(".communication.chat").hide();
     $(".communication.meal").hide();
-    $(".communication.play").hide();
+    $(".communication.changeCloth").hide();
     $(".footer-menu").each(function(index, element) {
         $(element).on("click", function(event) {
             if ($(this).attr("data-action") === "chat") {
                 $(".communication.chat").show();
                 $(".communication.meal").hide();
-                $(".communication.play").hide();
+                $(".communication.changeCloth").hide();
                 // is-activeの操作
                 $("[data-action='chat']").addClass("is-active");
                 $("[data-action='meal']").removeClass("is-active");
-                $("[data-action='play']").removeClass("is-active");
+                $("[data-action='changeCloth']").removeClass("is-active");
             } else if ($(this).attr("data-action") === "meal") {
                 $(".communication.meal").show();
                 $(".communication.chat").hide();
-                $(".communication.play").hide();
+                $(".communication.changeCloth").hide();
                 // is-activeの操作
                 $("[data-action='meal']").addClass("is-active");
                 $("[data-action='chat']").removeClass("is-active");
-                $("[data-action='play']").removeClass("is-active");
-            } else if ($(this).attr("data-action") === "play") {
-                $(".communication.play").show();
+                $("[data-action='changeCloth']").removeClass("is-active");
+            } else if ($(this).attr("data-action") === "changeCloth") {
+                $(".communication.changeCloth").show();
                 $(".communication.chat").hide();
                 $(".communication.meal").hide();
                 // is-activeの操作
-                $("[data-action='play']").addClass("is-active");
+                $("[data-action='changeCloth']").addClass("is-active");
                 $("[data-action='meal']").removeClass("is-active");
                 $("[data-action='chat']").removeClass("is-active");
             }
@@ -46,17 +46,32 @@ $(function() {
     $(".meal-list > li").draggable({
         helper: "clone"
     });
+    // 着せ替え
+    $(".cloth-list > li").draggable({
+        helper: "clone"
+    });
+    
     // http://stacktrace.jp/jquery/ui/interaction/droppable.html
     $(".image-pal").droppable({
         drop: function(e, ui) {
-            // パル喜ぶ
-            $(".arrow_box").empty();
-            $(".arrow_box").append(ui.helper.data().value + '<i class="fa fa-heart" aria-hidden="true"></i>');
-            // お腹を一つ満たす
-            var firstNoManpukued = $($(".header-menu").find("li > i.fa-circle-o")[0]);
-            if (firstNoManpukued) {
-                firstNoManpukued.removeClass("fa-circle-o");
-                firstNoManpukued.addClass("fa-circle");
+            // 着替え
+            if ($(e.originalEvent.target).hasClass("cloth")) {
+                // targetにimgタグが格納されてるので、それをコピーする
+                $(".kisekae").attr("src", $(e.originalEvent.target).attr("src"));
+            } else if ($(e.originalEvent.target).hasClass("cloth-purge")) {
+                // はずす
+                $(".kisekae").attr("src", "");
+            } else if ($(e.originalEvent.target).hasClass("meal"))  {
+                // 食事
+                // パル喜ぶ
+                $(".arrow_box").empty();
+                $(".arrow_box").append(ui.helper.data().value + '<i class="fa fa-heart" aria-hidden="true"></i>');
+                // お腹を一つ満たす
+                var firstNoManpukued = $($(".header-menu").find("li > i.fa-circle-o")[0]);
+                if (firstNoManpukued) {
+                    firstNoManpukued.removeClass("fa-circle-o");
+                    firstNoManpukued.addClass("fa-circle");
+                }
             }
         }
     });
@@ -184,24 +199,29 @@ $(function() {
         // お腹もなつき度も低い時(絶望的)
         if ($(".header-menu").find("li > i.fa-circle").length <= 1 && $(".header-menu").find("li > i.fa-heart").length <= 1) {
             $(".image-pal").attr("src", "images/shunn.png");
+            $(".kisekae").removeClass("pal-default");
             return;
         }
         // 気分最高の時
         if ($(".header-menu").find("li > i.fa-circle").length === 5 && $(".header-menu").find("li > i.fa-heart").length === 5) {
             $(".image-pal").attr("src", "images/pal1.png");
+            $(".kisekae").removeClass("pal-default");
             return;
         }
         // お腹だけ減ってる時
         if ($(".header-menu").find("li > i.fa-circle").length <= 1) {
             $(".image-pal").attr("src", "images/harahetta.png");
+            $(".kisekae").removeClass("pal-default");
             return;
         }
         // 機嫌だけ悪い時
         if ($(".header-menu").find("li > i.fa-heart").length <= 1) {
             $(".image-pal").attr("src", "images/punpun.png");
+            $(".kisekae").removeClass("pal-default");
             return;
         }
         // デフォルト
         $(".image-pal").attr("src", "images/pal.png");
+        $(".kisekae").addClass("pal-default");
     }, pal.const.palImageChangeTime);
 });

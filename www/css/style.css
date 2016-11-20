@@ -95,6 +95,26 @@ input[type="text"] {
     color: blue;
 }
 
+.pal-img-div {
+    position: relative;
+    width: 350px;
+    z-index: -1;
+}
+
+.kisekae {
+    position: absolute;
+    /* 頭の上にかぶるようにする */
+    left: 55px;
+    top: 30px;
+}
+
+.kisekae.pal-default {
+    position: absolute;
+    /* 頭の上にかぶるようにする */
+    left: 55px;
+    top: 0px !important;
+}
+
 .image-pal {
     height: 50%;
     width: 50%;
@@ -137,17 +157,26 @@ footer > ul > li {
     flex: auto;
 }
 
-.communication > .meal-list,.play-list {
+.communication > .meal-list,.cloth-list {
     display: flex;
     list-style: none;
+    flex: 1;
     justify-content:space-around;
 }
 
-.meal-list,.play-list > li {
+.meal-list > li {
+    flex: auto;
+}
+.cloth-list > li {
     flex: auto;
 }
 
 .meal-list > li > img.meal {
+    width: 50px;
+    height: 50px;
+}
+
+.cloth-list > li > img.cloth {
     width: 50px;
     height: 50px;
 }
